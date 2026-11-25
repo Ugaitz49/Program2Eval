@@ -4,8 +4,8 @@ public class ExcursionBuceo extends Excursion {
 	private boolean certificado;
 	private int profundidad;
 	private boolean equipo;
-	private final int SUMA = 100;
-
+	private final int PrecioEquipo = 100;
+	
 	public boolean isCertificado() {
 		return certificado;
 	}
@@ -49,8 +49,10 @@ public class ExcursionBuceo extends Excursion {
 	@Override
 	public double calcularPrecio() {
 		if(isEquipo()) {
-			return super.calcularPrecio()-super.calcularPrecio()+SUMA;
+			return super.calcularPrecio()+getNumeroParticipantes()*PrecioEquipo;
+			
+		}else {
+			return super.calcularPrecio();
 		}
-		return SUMA;
 	}
 }

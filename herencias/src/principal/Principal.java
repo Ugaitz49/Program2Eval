@@ -1,5 +1,7 @@
 package principal;
 
+import java.io.PrintStream;
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -11,14 +13,17 @@ public class Principal {
 		System.out.println(excursionCultural.toString());
 		System.out.println(excursionCultural.calcularPrecio());
 		
-		ExcursionBuceo excursionBuceo= new ExcursionBuceo("2",Destino.PLAYA,25,150,10,false,6,false);
-		System.out.println(excursionBuceo.toString());
-		System.out.println(excursionCultural.calcularPrecio());
-		
-		ExcursionBuceo excursionBuceo2= new ExcursionBuceo("2",Destino.PLAYA,25,150,10,false,6,true);
+		ExcursionBuceo excursionBuceo= new ExcursionBuceo("2",Destino.PLAYA,23,150,10,false,6,false);
 		System.out.println(excursionBuceo.toString());
 		System.out.println(excursionBuceo.calcularPrecio());
-
+		
+		ExcursionBuceo excursionBuceo2= new ExcursionBuceo("2",Destino.PLAYA,30,150,10,false,6,true);
+		System.out.println(excursionBuceo2.toString());
+		System.out.println(excursionBuceo2.calcularPrecio());
+		
+		ExcursionAventura excursionAventura= new ExcursionAventura("2",Destino.PLAYA,23,150,10,Nivel.EXTREMO);
+		System.out.println(excursionBuceo2.toString());
+		System.out.println(excursionBuceo2.calcularPrecio());
 	}
 
 }

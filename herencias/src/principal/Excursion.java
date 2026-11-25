@@ -28,7 +28,7 @@ public class Excursion {
 		this.duracion = duracion;
 	}
 
-	private Destino convertirDestino(String destino) {
+	public Destino convertirDestino(String destino) {
 		if (destino == null) {
 			return Destino.INDEFINIDO;
 		}
