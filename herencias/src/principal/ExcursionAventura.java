@@ -36,6 +36,7 @@ public class ExcursionAventura extends Excursion {
 				return Nivel.BAJA;
 			}
 		}
+		return null;
 
 	
 	}
@@ -50,6 +51,7 @@ public class ExcursionAventura extends Excursion {
 			return super.calcularPrecio()+super.calcularPrecio()+300;
 
 		}
+		return 0;
 	}
 	
 }

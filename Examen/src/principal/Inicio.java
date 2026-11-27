@@ -108,12 +108,11 @@ public class Inicio {
 		System.out.println("1- MONTAÑA");
 		System.out.println("2- PLAYA");
 		System.out.println("3- CIUDAD");
-		System.out.println("4- INDEFINIDO");
 		System.out.print("Opción: ");
 		int op = cs.nextInt();
 
 		while (op < 1 || op > 4) {
-			System.out.print("Opción no válida. Elige entre 1 y 4: ");
+			System.out.print("Opción no válida. Elige entre 1 y 3: ");
 			op = cs.nextInt();
 		}
 

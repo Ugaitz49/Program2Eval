@@ -1,43 +1,60 @@
-CREATE DATABASE fabrica;
+
+CREATE DATABASE IF NOT EXISTS fabrica;
+
 USE fabrica;
-CREATE TABLE proveedor(
-	CodProv INT PRIMARY KEY
-    CHECK (CodProv > 0.00),
+
+CREATE TABLE IF NOT EXISTS Proveedor(
+    CodProv INT PRIMARY KEY,
     NomProv VARCHAR(50) NOT NULL UNIQUE,
-    DirProv VARCHAR(50) NOT NULL
+    DirProv VARCHAR(50) NOT NULL,
+    CHECK (CodProv > 0)
 );
 
-CREATE TABLE MateriaPrima(
-	codComp int primary key
-   check (codComp >=0.00),
-    NomMp VARCHAR(50) NOT NULL unique,
-    FOREIGN KEY(CodProv)
-		REFERENCES proveedor(CodProv)
+CREATE TABLE IF NOT EXISTS MateriaPrima(
+    CodMP INT PRIMARY KEY,
+    NpmMP VARCHAR(50) NOT NULL,
+    CodProv INT,
+    CHECK (CodMP >= 0),
+    FOREIGN KEY (CodProv) REFERENCES Proveedor(CodProv)
         ON UPDATE CASCADE
 );
 
-CREATE TABLE Componentes(
-	CodComp varchar(4) NOT NULL PRIMARY KEY,
-	NomComp VARCHAR(50) NOT NULL,
-    StockComp INT NOT NULL
-		CHECK (StockComp > 0.00),
-    StockMinComp INT NOT NULL
-		CHECK (StockMinComp >0.00)
-		DEFAULT 5
+CREATE TABLE IF NOT EXISTS Componente(
+    CodComp CHAR(4) PRIMARY KEY,
+    NomComp VARCHAR(50) NOT NULL,
+    StockComp INT NOT NULL,
+		CHECK (StockComp >= 0),
+    StockMinComp INT NOT NULL DEFAULT 5,
+		CHECK (StockMinComp >= 0)
 );
 
-CREATE TABLE Composicion(
-	CodCompSup varchar(4),
-    CodCompInf varchar(4),
-	PRIMARY KEY(CodCompSup,CodCompInf),
-	Cant INT NOT NULL DEFAULT 1.00,
-  check (cant>=0.00),
-    FOREIGN KEY(CodCompSup) 
-		REFERENCES Componentes(CodCompSup)
-	on delete restrict
+CREATE TABLE IF NOT EXISTS Composicion(
+    CodCompSup VARCHAR(4),
+    CodCompInf VARCHAR(4),
+    Cant INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (CodCompSup, CodCompInf),
+    CHECK (Cant > 0),
+    FOREIGN KEY (CodCompSup) 
+		REFERENCES Componente(CodComp)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (CodCompInf) 
+		REFERENCES Componente(CodComp)
+        ON DELETE RESTRICT
 );
 
-CREATE TABLE Fabricacion(
-	CodMp varchar (10) primary key not null,
-    CodComp varchar (10) primary key not null
+CREATE TABLE IF NOT EXISTS Fabricacion(
+    CodMP INT,
+    CodComp CHAR(4),
+    PRIMARY KEY (CodMP, CodComp),
+    FOREIGN KEY (CodMP) 
+		REFERENCES MateriaPrima(CodMP)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (CodComp) 
+		REFERENCES Componente(CodComp)
+        ON DELETE RESTRICT
 );
+
+
+
+
+

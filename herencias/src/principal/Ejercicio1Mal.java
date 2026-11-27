@@ -1,8 +1,8 @@
-package principal
+package principal;
 
 import java.util.Scanner;
 
-public class Ejercicio1 {
+public class Ejercicio1Mal {
 
     public static void main(String[] args) {
 
